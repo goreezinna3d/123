@@ -1,0 +1,66 @@
+{
+  "meta": {
+    "lastTouchedVersion": "2026.4.5",
+    "lastTouchedAt": "2026-04-13T14:35:23.546Z"
+  },
+  "wizard": {
+    "lastRunAt": "2026-04-06T09:35:04.934Z",
+    "lastRunVersion": "2026.3.13",
+    "lastRunCommand": "configure",
+    "lastRunMode": "local"
+  },
+
+{
+  agents: {
+    defaults: {
+      model: { primary: "local/latest1" },
+      models: {
+        "local/latest1": { alias: "Latest" },
+      },
+    },
+  },
+  models: {
+    mode: "merge",
+    providers: {
+      local: {
+        baseUrl: "http://127.0.0.1:8083/v1",
+        apiKey: "123356789",
+        api: "openai-completions",
+        models: [
+          {
+            id: "latest1",
+            name: "latest1 (Custom Provider)",
+            reasoning: false,
+            input: ["text", "image"],
+            cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 },
+            contextWindow: 131072,
+            maxTokens: 8192,
+          },
+        ],
+      },
+    },
+  },
+
+  gateway: {
+    port: 18789,
+    mode: "local",
+    bind: "lan",
+    auth: {
+      mode: "token",
+      token: "123123123",
+    },
+    http: {
+      endpoints: {
+        chatCompletions: {
+          enabled: true,
+          images: {
+            allowUrl: true,
+          },
+        },
+        responses: {
+          enabled: true,
+        },
+      },
+    },
+  },
+}
